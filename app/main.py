@@ -30,17 +30,27 @@ from taxonomy import SCAM_TYPES  # noqa: E402
 
 st.set_page_config(page_title="UPIGuard", page_icon="🛡️", layout="wide")
 
+# Force light mode. The demo is projected on a projector in front of judges,
+# and Streamlit's dark theme puts light-background cards (the alert reasons, the
+# scenario card) at unreadable contrast. Explicit colours on every card below
+# are the real fix; this just stops the base theme fighting them.
 CSS = """
 <style>
-.blocked{background:#7f1d1d;color:#fff;padding:1.1rem;border-radius:10px;margin:.4rem 0}
-.stepup{background:#78350f;color:#fff;padding:1.1rem;border-radius:10px;margin:.4rem 0}
-.allowed{background:#14532d;color:#fff;padding:1.1rem;border-radius:10px;margin:.4rem 0}
-.reason{background:#f8fafc;border-left:4px solid #dc2626;padding:.5rem .8rem;margin:.3rem 0;
-        border-radius:4px;color:#0f172a;font-size:.92rem}
-.scenario{background:#eff6ff;border-left:4px solid #2563eb;padding:.7rem .9rem;
-          border-radius:6px;margin:.5rem 0;font-size:.95rem}
+.stApp{background:#ffffff;color:#0f172a}
+.blocked{background:#7f1d1d;color:#ffffff;padding:1.1rem;border-radius:10px;margin:.4rem 0}
+.stepup{background:#92400e;color:#ffffff;padding:1.1rem;border-radius:10px;margin:.4rem 0}
+.allowed{background:#14532d;color:#ffffff;padding:1.1rem;border-radius:10px;margin:.4rem 0}
+/* explicit colours on every element: Streamlit dark mode overrides inherited
+   text colour, so the body rule alone is not enough */
+.reason{background:#f1f5f9;color:#0f172a;border-left:4px solid #dc2626;
+        padding:.55rem .85rem;margin:.3rem 0;border-radius:4px;font-size:.92rem}
+.reason b,.reason i{color:#0f172a}
+.scenario{background:#eff6ff;color:#0f172a;border-left:4px solid #2563eb;
+          padding:.75rem .95rem;border-radius:6px;margin:.5rem 0;font-size:.95rem}
+.scenario b,.scenario i,.scenario span{color:#0f172a}
 .big{font-size:1.5rem;font-weight:700}
 .small{font-size:.8rem;color:#64748b}
+h1,h2,h3,p,label{color:#0f172a}
 </style>
 """
 st.markdown(CSS, unsafe_allow_html=True)
@@ -109,8 +119,8 @@ def card(action: str, txn: dict, verdict) -> None:
 
     st.markdown(
         f'<div class="small">If this is fraud, report it on the National Cyber Crime '
-        f'helpline <b>{HELPLINE}</b> — cybercr ime.gov.in. Bank fraud helplines are '
-        f'linked from your bank app.</div>'.replace("cybercr ime", "cybercrime"),
+        f'helpline <b>{HELPLINE}</b> — cybercrime.gov.in. Bank fraud helplines are '
+        f'linked from your bank app.</div>',
         unsafe_allow_html=True)
 
 
