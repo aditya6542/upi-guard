@@ -1,0 +1,90 @@
+{
+  "clean_fraud_recall": 1.0,
+  "text_only_attack_recall": 0.9847,
+  "adversarial_recall_before_adaptation": 0.4646,
+  "adversarial_recall_after_adaptation": 0.9875,
+  "recovery_percentage_points": 52.29,
+  "mutations_generated": 1440,
+  "misses_before_adaptation": 771,
+  "legit_fpr_before_adaptation": 0.0012,
+  "legit_fpr_after_adaptation": 0.0671,
+  "per_type_adversarial": {
+    "F01": {
+      "n": 123,
+      "caught": 55,
+      "recall": 0.4472
+    },
+    "F02": {
+      "n": 131,
+      "caught": 16,
+      "recall": 0.1221
+    },
+    "F03": {
+      "n": 132,
+      "caught": 132,
+      "recall": 1.0
+    },
+    "F04": {
+      "n": 198,
+      "caught": 101,
+      "recall": 0.5101
+    },
+    "F05": {
+      "n": 198,
+      "caught": 79,
+      "recall": 0.399
+    },
+    "F06": {
+      "n": 132,
+      "caught": 84,
+      "recall": 0.6364
+    },
+    "F07": {
+      "n": 132,
+      "caught": 107,
+      "recall": 0.8106
+    },
+    "F08": {
+      "n": 135,
+      "caught": 30,
+      "recall": 0.2222
+    },
+    "F09": {
+      "n": 126,
+      "caught": 46,
+      "recall": 0.3651
+    },
+    "F10": {
+      "n": 133,
+      "caught": 19,
+      "recall": 0.1429
+    }
+  },
+  "examples": [
+    {
+      "type": "F05",
+      "before": "Rs 33595 credited to your UPI. Please forward it to the given ID within 30 minutes.",
+      "after": "Rs 33595 deeposited to your UPI. please kro."
+    },
+    {
+      "type": "F09",
+      "before": "Invest Rs 63861 for a risk-free 25% return. Withdrawal allowed after 7 days.",
+      "after": "Invest Rs 63861 for a risk-free 25% return. bhej do."
+    },
+    {
+      "type": "F05",
+      "before": "Amount of Rs 48443 has been deposited. Transfer it onwards as instructed to confirm your order.",
+      "after": "Amunt of Rs 44443 has been deposited. kro."
+    },
+    {
+      "type": "F02",
+      "before": "Merchant QR updated. Please scan and pay Rs 2627 for your booking.",
+      "after": "Use the attached code to settle the amount and send a copy of the confirmation once done. kro."
+    },
+    {
+      "type": "F02",
+      "before": "Scan this QR to complete your payment of Rs 15471 for the order.",
+      "after": "Scan this QR to coomplete your payment of Rs 15417 for the order. kar do."
+    }
+  ]
+}

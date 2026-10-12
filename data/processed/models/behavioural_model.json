@@ -1,0 +1,43 @@
+{
+  "w": [
+    0.8299666065256228,
+    0.7644103019819217,
+    0.5108563611554401,
+    0.7438581608458427,
+    0.9339913896525142,
+    1.535133970960966,
+    1.0645052939568405,
+    -3.8154307091648048,
+    0.15298816817032584,
+    -0.05677050266906042,
+    0.8184312767634302,
+    0.29215599493262934,
+    2.7463710008200684,
+    0.521169788183645,
+    2.5487399080791686,
+    2.496704331252093,
+    0.0,
+    0.0
+  ],
+  "b": 8.772767216796126,
+  "feature_names": [
+    "collect_request",
+    "incoming_direction",
+    "purpose_direction_mismatch",
+    "amount_log",
+    "round_amount",
+    "new_payee",
+    "new_payee_large",
+    "payee_account_age_log",
+    "credential_request",
+    "urgency_keywords",
+    "qr_merchant_mismatch",
+    "qr_present",
+    "new_device",
+    "emulator",
+    "txn_per_10min",
+    "txn_per_hour",
+    "distinct_payees_recent",
+    "brand_impersonation"
+  ]
+}

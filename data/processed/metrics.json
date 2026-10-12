@@ -1,0 +1,169 @@
+{
+  "n_transactions": 8000,
+  "n_fraud": 1440,
+  "gate": {
+    "block": 0.72,
+    "stepup": 0.38
+  },
+  "overall": {
+    "tp": 1440,
+    "fp": 8,
+    "fn": 0,
+    "tn": 6552,
+    "precision": 0.9945,
+    "recall": 1.0,
+    "f1": 0.9972,
+    "false_positive_rate": 0.0012,
+    "specificity": 0.9988
+  },
+  "per_scam_type": {
+    "F01": {
+      "label": "Collect request disguised as refund",
+      "n": 123,
+      "recall": 1.0
+    },
+    "F02": {
+      "label": "QR code swap / merchant impersonation",
+      "n": 131,
+      "recall": 1.0
+    },
+    "F03": {
+      "label": "Screen-sharing / remote-access scam",
+      "n": 132,
+      "recall": 1.0
+    },
+    "F04": {
+      "label": "Fake KYC / bank account update",
+      "n": 198,
+      "recall": 1.0
+    },
+    "F05": {
+      "label": "Mule chain / pass-through laundering",
+      "n": 198,
+      "recall": 1.0
+    },
+    "F06": {
+      "label": "OTP / UPI PIN harvesting",
+      "n": 132,
+      "recall": 1.0
+    },
+    "F07": {
+      "label": "Overpayment refund scam",
+      "n": 132,
+      "recall": 1.0
+    },
+    "F08": {
+      "label": "Lottery / prize / tournament bait",
+      "n": 135,
+      "recall": 1.0
+    },
+    "F09": {
+      "label": "Guaranteed-return investment",
+      "n": 126,
+      "recall": 1.0
+    },
+    "F10": {
+      "label": "Fake job / task-based earning",
+      "n": 133,
+      "recall": 1.0
+    }
+  },
+  "per_legit_type_fpr": {
+    "L01": {
+      "label": "Electricity bill",
+      "n": 613,
+      "fp": 0,
+      "fpr": 0.0
+    },
+    "L04": {
+      "label": "School fees",
+      "n": 658,
+      "fp": 0,
+      "fpr": 0.0
+    },
+    "L05": {
+      "label": "EMI instalment",
+      "n": 631,
+      "fp": 0,
+      "fpr": 0.0
+    },
+    "L03": {
+      "label": "Friend dinner split",
+      "n": 684,
+      "fp": 1,
+      "fpr": 0.0015
+    },
+    "L02": {
+      "label": "Mobile recharge",
+      "n": 688,
+      "fp": 0,
+      "fpr": 0.0
+    },
+    "L10": {
+      "label": "Small merchant purchase",
+      "n": 677,
+      "fp": 0,
+      "fpr": 0.0
+    },
+    "L09": {
+      "label": "Insurance premium",
+      "n": 646,
+      "fp": 1,
+      "fpr": 0.0015
+    },
+    "L07": {
+      "label": "Salary credit notice",
+      "n": 642,
+      "fp": 0,
+      "fpr": 0.0
+    },
+    "L06": {
+      "label": "Rent transfer",
+      "n": 647,
+      "fp": 2,
+      "fpr": 0.0031
+    },
+    "L08": {
+      "label": "Medical emergency",
+      "n": 674,
+      "fp": 4,
+      "fpr": 0.0059
+    }
+  },
+  "latency_ms_per_txn": 0.13,
+  "top_features": [
+    {
+      "feature": "payee_account_age_log",
+      "weight": -3.8154307091648048
+    },
+    {
+      "feature": "new_device",
+      "weight": 2.7463710008200684
+    },
+    {
+      "feature": "txn_per_10min",
+      "weight": 2.5487399080791686
+    },
+    {
+      "feature": "txn_per_hour",
+      "weight": 2.496704331252093
+    },
+    {
+      "feature": "new_payee",
+      "weight": 1.535133970960966
+    },
+    {
+      "feature": "new_payee_large",
+      "weight": 1.0645052939568405
+    },
+    {
+      "feature": "round_amount",
+      "weight": 0.9339913896525142
+    },
+    {
+      "feature": "collect_request",
+      "weight": 0.8299666065256228
+    }
+  ],
+  "baseline_majority_f1": 0.0
+}

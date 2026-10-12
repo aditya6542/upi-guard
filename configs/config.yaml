@@ -1,0 +1,63 @@
+# UPIGuard configuration
+# Analyst feedback loop updates the `rules:` section — kept out of code on purpose.
+
+paths:
+  raw: "data/raw"
+  processed: "data/processed"
+  models: "data/processed/models"
+
+dataset:
+  n_transactions: 8000
+  # Real-world UPI fraud base rate is well under 1%. We oversample slightly so that
+  # per-class metrics are stable, but the fraud:legit ratio stays realistic enough
+  # that false-positive rate is a meaningful number to report.
+  fraud_ratio: 0.18
+  seed: 42
+
+# ---------------------------------------------------------------- risk gate
+gate:
+  # Tuned on the PR curve during training (see src/train.py). Operating point is
+  # chosen to keep false positives low: a blocked legit payment is the worst outcome.
+  block_threshold: 0.72
+  stepup_threshold: 0.38
+
+# ---------------------------------------------------------------- layer weights
+fusion:
+  # Weighted sum of layer scores. A stacking logistic regression is fitted on the
+  # labelled set during training; these weights are the pre-training fallback so
+  # the system is runnable before any training has happened.
+  weights:
+    rules: 0.34
+    script: 0.24
+    behavioural: 0.22
+    graph: 0.20
+
+# ---------------------------------------------------------------- rule engine
+rules:
+  collect_request_refund: 0.95   # "refund" wording on a collect request
+  credential_request: 0.98       # OTP / PIN / CVV asked alongside a payment
+  qr_merchant_mismatch: 0.85
+  new_payee_first_large: 0.55
+  urgency_keywords: 0.45
+  brand_impersonation: 0.70
+  new_device: 0.40
+  round_amount_high: 0.25
+  high_velocity: 0.35
+
+# ---------------------------------------------------------------- graph engine
+graph:
+  # A payee sharing an identifier with a previously-flagged account is suspicious
+  # even when every per-transaction feature looks clean.
+  shared_device_weight: 0.55
+  shared_phone_weight: 0.35
+  shared_ip_weight: 0.25
+  ring_min_size: 3
+  # A shared identifier (corporate NAT, campus Wi-Fi) can fuse thousands of
+  # unrelated accounts. Cap the component walk so a per-transaction lookup stays
+  # bounded and component_size stays interpretable.
+  max_component: 400
+
+# ---------------------------------------------------------------- demo / UI
+demo:
+  helpline: "1930"
+  bank_name: "HDFC"

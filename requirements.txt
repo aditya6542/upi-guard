@@ -1,0 +1,10 @@
+# UPIGuard - CyberCup 6.0 | CC6-AI02
+# pip install -r requirements.txt
+#
+# The detector core (rules, similarity, model, graph) is deliberately stdlib +
+# numpy only, so the whole risk engine runs with no ML stack installed. Only the
+# Streamlit front-end needs a pip install.
+numpy>=1.26
+pandas>=2.0
+PyYAML>=6.0
+streamlit>=1.31
