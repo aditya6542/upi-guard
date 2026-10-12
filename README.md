@@ -59,11 +59,18 @@ pip install -r requirements.txt     # numpy, pandas, pyyaml, streamlit
 python3 src/generator/generate.py   # 8,000 labelled transactions
 python3 src/detector/train.py       # train + metrics + self-checks
 python3 src/detector/mutate.py      # attack + adaptation loop
+python3 scripts/smoke_test.py       # 12 checks on everything the app calls
 
 streamlit run app/main.py           # the demo, 3 screens
 ```
 
+Or just `bash run_all.sh` for the first three.
+
 Screens: **Payment Simulation** (the gate firing), **Adaptivity** (attack → review → recover), **Analyst Dashboard** (drill-down, ring graph, feature weights).
+
+## Checking it works
+
+`python3 scripts/smoke_test.py` exercises every code path the app calls — loading the dataset, building the engine, scoring all 20 scenario types, formatting every table the dashboard renders — with Streamlit stubbed out. It catches the crashes that would otherwise show up in front of a judge. It does **not** check how the page looks; for that, open the app and walk through `docs/DEMO_SCRIPT.md`.
 
 ## Why no scikit-learn / LightGBM / NetworkX
 
