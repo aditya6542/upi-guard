@@ -29,8 +29,9 @@ class LogisticModel:
         self.lr, self.epochs, self.l2, self.seed = lr, epochs, l2, seed
 
     @staticmethod
-    def _sigmoid(z: np.ndarray) -> np.ndarray:
-        return 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))
+    def _sigmoid(z):
+        """Element-wise sigmoid. Accepts a scalar or an array of any shape."""
+        return 1.0 / (1.0 + np.exp(-np.clip(z, -30.0, 30.0)))
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> "LogisticModel":
         rng = np.random.default_rng(self.seed)
@@ -39,7 +40,9 @@ class LogisticModel:
         for _ in range(self.epochs):
             for idx in order:
                 xi, yi = X[idx], y[idx]
-                p = float(self._sigmoid(np.array([self.w @ xi + self.b])))
+                # float() on the scalar result, not on a 1-element array:
+                # NumPy 2.x removed that implicit conversion.
+                p = self._sigmoid(float(self.w @ xi + self.b))
                 err = yi - p
                 self.w += self.lr * (err * xi - self.l2 * self.w)
                 self.b += self.lr * err
@@ -48,7 +51,7 @@ class LogisticModel:
     def score(self, x: np.ndarray) -> float:
         if x.size == 0:
             return 0.0
-        return float(self._sigmoid(np.array([self.w @ x + self.b])))
+        return float(self._sigmoid(float(self.w @ x + self.b)))
 
     def score_many(self, X: np.ndarray) -> np.ndarray:
         if X.size == 0:

@@ -130,7 +130,7 @@
       "fpr": 0.0059
     }
   },
-  "latency_ms_per_txn": 0.13,
+  "latency_ms_per_txn": 0.129,
   "top_features": [
     {
       "feature": "payee_account_age_log",
