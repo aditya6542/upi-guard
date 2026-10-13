@@ -47,18 +47,22 @@ def _():
     import types
     stub = types.ModuleType("streamlit")
     for attr in ("set_page_config", "markdown", "caption", "error", "stop",
-                 "header", "divider", "button", "dataframe", "metric",
-                 "info", "warning", "title"):
+                 "header", "subheader", "divider", "button", "dataframe",
+                 "metric", "info", "warning", "title", "success", "write",
+                 "progress", "expander"):
         setattr(stub, attr, lambda *a, **k: None)
+    import contextlib
+    stub.__dict__["expander"] = lambda *a, **k: contextlib.nullcontext()
     # Widgets must return a usable value, not None, or the module-level
     # dispatch and the screen functions below raise on lookup.
     stub.__dict__["selectbox"] = lambda label, options, *a, **k: list(options)[0]
     stub.__dict__["select_slider"] = lambda label, options=None, *a, **k: (
         0 if options is None else list(options)[0])
     stub.__dict__["slider"] = lambda label, *a, **k: a[0] if a else 0
-    stub.__dict__["columns"] = lambda n: [types.SimpleNamespace(**{
-        "metric": lambda *a, **k: None, "markdown": lambda *a, **k: None,
-        "caption": lambda *a, **k: None}) for _ in range(n)]
+    class _Col(contextlib.nullcontext):
+        def __getattr__(self, _):
+            return lambda *a, **k: None
+    stub.__dict__["columns"] = lambda n: [_Col() for _ in (n if isinstance(n, (list, tuple)) else range(n))]
     stub.__dict__["sidebar"] = types.SimpleNamespace(
         title=lambda *a, **k: None, caption=lambda *a, **k: None,
         divider=lambda *a, **k: None,
@@ -67,6 +71,12 @@ def _():
     # cache_data must work as a decorator factory: @st.cache_data(...) wraps
     # load_all. Returning the function unchanged is the correct no-op.
     stub.__dict__["cache_data"] = lambda *a, **k: (lambda fn: fn)
+    class _SS(dict):
+        def __getattr__(self, k):
+            return self.get(k)
+        def __setattr__(self, k, v):
+            self[k] = v
+    stub.__dict__["session_state"] = _SS(verdict=None, txn=None)
     sys.modules["streamlit"] = stub
     import importlib.util
     spec = importlib.util.spec_from_file_location("app_main", ROOT / "app" / "main.py")

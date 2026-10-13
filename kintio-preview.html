@@ -1,0 +1,217 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kintio Auto — UPI Fraud Detection (shareable preview)</title>
+<style>
+body{background:#050505;color:#F5F5F5;font-family:system-ui,sans-serif;margin:0;padding:1rem}
+.wrap{max-width:1100px;margin:0 auto}
+.hdr{border:1px solid #252A24;background:#0B0D0B;padding:1rem 1.2rem;margin-bottom:1rem}
+.logo{font-weight:800;font-size:1.3rem}.logo b{color:#C6FF00}
+.tech{font-family:monospace;font-size:.68rem;letter-spacing:.1em;color:#92978E;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.8rem}
+.card{background:#0B0D0B;border:1px solid #252A24;padding:1rem}
+.amt{font-size:1.5rem;font-weight:800}.who{font-size:.85rem;margin:.2rem 0}
+.msg{background:#111511;border:1px solid #252A24;border-radius:8px;padding:.6rem;font-size:.78rem;color:#D6D9D2;margin:.5rem 0}
+.dec{font-weight:800;font-size:1.1rem}
+.rbar{height:6px;background:#1E221D;border-radius:99px;overflow:hidden;margin:.4rem 0}.rbar div{height:100%}
+.lyr{display:flex;gap:.5rem;font-size:.7rem;align-items:center;margin:.2rem 0}.lyr span{width:6.5rem;color:#92978E;font-family:monospace;font-size:.62rem}
+.tr{flex:1;height:5px;background:#1E221D;border-radius:99px;overflow:hidden}.fl{height:100%;background:#C6FF00}
+.ev{font-size:.72rem;background:rgba(198,255,0,.06);border-left:2px solid #C6FF00;padding:.35rem .5rem;margin:.25rem 0;color:#D6D9D2}
+table{width:100%;font-size:.75rem;border-collapse:collapse}td,th{padding:.35rem;border-bottom:1px solid #1A1D19;text-align:left}
+.kpis{display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0}.kpi{background:#0B0D0B;border:1px solid #252A24;padding:.8rem 1.2rem;flex:1;min-width:150px}
+.kpi .v{font-size:1.7rem;font-weight:800}
+#q{width:100%;padding:.6rem;background:#0B0D0B;border:1px solid #C6FF00;color:#fff;border-radius:6px;margin:.5rem 0}
+.btns{margin:.5rem 0}.btns button{background:#1E221D;color:#C6FF00;border:1px solid #C6FF00;border-radius:99px;padding:.3rem .9rem;margin:.15rem;cursor:pointer}
+</style></head><body><div class="wrap">
+<div class="hdr"><div class="logo">KINTIO <b>AUTO</b> <span class="tech">● LIVE DEMO PREVIEW</span></div>
+<div class="tech">Intelligent UPI Fraud Detection · shareable static preview · scores from the real engine · synthetic data only · not a banking service</div></div>
+<div class="kpis">
+<div class="kpi"><div class="v">8,000</div><div class="tech">Transactions scored</div></div>
+<div class="kpi"><div class="v">100.0%</div><div class="tech">Fraud recall</div></div>
+<div class="kpi"><div class="v">0.12%</div><div class="tech">False-positive rate</div></div>
+<div class="kpi"><div class="v">0.10 ms</div><div class="tech">Latency / txn</div></div>
+<div class="kpi"><div class="v" style="color:#C6FF00">+52.3 pp</div><div class="tech">Adaptivity: 46% → 99%</div></div>
+</div>
+<input id="q" placeholder="🔍 Filter: try F01, refund, QR, job, genuine…" oninput="f(this.value)">
+<div class="btns"><button onclick="f('')">All</button><button onclick="f('F0')">Fraud F01–F10</button><button onclick="f('BLOCK')">⛔ Blocked</button><button onclick="f('STEP_UP')">⚠️ Step-up</button><button onclick="f('ALLOW')">✅ Allowed</button></div>
+<div class="grid" id="g"><div class="card" data-code="F01" data-label="fraud">
+    <div class="tech">F01 · FRAUD</div>
+    <div class="amt">₹800</div>
+    <div class="who">DMart <span class="tech">dmart93@okhdfcbank</span></div>
+    <div class="msg">“Your payment of Rs 800 was debited by mistake. Accept the collect request to get Rs 800 refunded.”</div>
+    <div class="dec" style="color:#F04438">BLOCK · 97%</div>
+    <div class="rbar"><div style="width:97%;background:#F04438"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:95%"></div></div><b>0.95</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:65%"></div></div><b>0.65</b></div><div class="ev">[RULE] Message promises a refund/credit, but a collect request sends money OUT.</div><div class="ev">[RULE] 22 transactions in the last hour.</div><div class="ev">[GRAPH] Device/phone shared with 2 previously flagged accounts.</div><div class="ev">[GRAPH] Part of a connected ring of 3 accounts acting together.</div></div>
+<div class="card" data-code="F02" data-label="fraud">
+    <div class="tech">F02 · FRAUD</div>
+    <div class="amt">₹2,627</div>
+    <div class="who">IRCTC <span class="tech">irctc98@okhdfcbank</span></div>
+    <div class="msg">“Merchant QR updated. Please scan and pay Rs 2627 for your booking.”</div>
+    <div class="dec" style="color:#F04438">BLOCK · 80%</div>
+    <div class="rbar"><div style="width:80%;background:#F04438"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:35%"></div></div><b>0.35</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[RULE] 20 transactions in the last hour.</div><div class="ev">[SCRIPT] Message closely matches known F02 scripts (91% similar).</div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] Payment made from a new device.</div></div>
+<div class="card" data-code="F03" data-label="fraud">
+    <div class="tech">F03 · FRAUD</div>
+    <div class="amt">₹24,399</div>
+    <div class="who">IRCTC <span class="tech">receiver84@okhdfcbank</span></div>
+    <div class="msg">“To resolve the pending complaint, share your screen with us. The refund of Rs 24399 will follow.”</div>
+    <div class="dec" style="color:#F04438">BLOCK · 98%</div>
+    <div class="rbar"><div style="width:98%;background:#F04438"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:95%"></div></div><b>0.95</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="ev">[RULE] Message promises a refund/credit, but a collect request sends money OUT.</div><div class="ev">[RULE] First-ever payment, large amount (Rs 24,399), payee account 11d old.</div><div class="ev">[RULE] New payee (11d old account) receiving Rs 24,399.</div><div class="ev">[RULE] 44 transactions in the last hour.</div></div>
+<div class="card" data-code="F04" data-label="fraud">
+    <div class="tech">F04 · FRAUD</div>
+    <div class="amt">₹2,009</div>
+    <div class="who">Zomato <span class="tech">receiver54@okhdfcbank</span></div>
+    <div class="msg">“As per RBI guidelines your Aadhaar must be re-verified. Submit details to claim Rs 2009.”</div>
+    <div class="dec" style="color:#F04438">BLOCK · 93%</div>
+    <div class="rbar"><div style="width:93%;background:#F04438"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:35%"></div></div><b>0.35</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:99%"></div></div><b>0.99</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="ev">[RULE] 17 transactions in the last hour.</div><div class="ev">[GRAPH] Device/phone shared with 11 previously flagged accounts.</div><div class="ev">[GRAPH] Part of a connected ring of 26 accounts acting together.</div><div class="ev">[SCRIPT] Message closely matches known F04 scripts (93% similar).</div></div>
+<div class="card" data-code="F05" data-label="fraud">
+    <div class="tech">F05 · FRAUD</div>
+    <div class="amt">₹33,595</div>
+    <div class="who">HDFC Bank <span class="tech">receiver50@okhdfcbank</span></div>
+    <div class="msg">“Rs 33595 credited to your UPI. Please forward it to the given ID within 30 minutes.”</div>
+    <div class="dec" style="color:#F04438">BLOCK · 95%</div>
+    <div class="rbar"><div style="width:95%;background:#F04438"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:55%"></div></div><b>0.55</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:90%"></div></div><b>0.90</b></div><div class="ev">[RULE] First-ever payment, large amount (Rs 33,595), payee account 94d old.</div><div class="ev">[RULE] 50 transactions in the last hour.</div><div class="ev">[GRAPH] Device/phone shared with 1 previously flagged account.</div><div class="ev">[GRAPH] Part of a connected ring of 13 accounts acting together.</div></div>
+<div class="card" data-code="F06" data-label="fraud">
+    <div class="tech">F06 · FRAUD</div>
+    <div class="amt">₹9,936</div>
+    <div class="who">DMart <span class="tech">receiver33@okhdfcbank</span></div>
+    <div class="msg">“Enter the 6-digit UPI PIN in the link below to authorise the refund of Rs 9936.”</div>
+    <div class="dec" style="color:#F04438">BLOCK · 98%</div>
+    <div class="rbar"><div style="width:98%;background:#F04438"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:98%"></div></div><b>0.98</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="ev">[RULE] Message promises a refund/credit, but a collect request sends money OUT.</div><div class="ev">[RULE] Requests credentials (6-digit, upi pin). No legitimate flow needs these.</div><div class="ev">[RULE] First-ever payment, large amount (Rs 9,936), payee account 57d old.</div><div class="ev">[RULE] Large payment from a device not seen before on this account.</div></div>
+<div class="card" data-code="F07" data-label="fraud">
+    <div class="tech">F07 · FRAUD</div>
+    <div class="amt">₹400</div>
+    <div class="who">IRCTC <span class="tech">receiver59@okhdfcbank</span></div>
+    <div class="msg">“Refund the excess Rs 400 within 10 minutes or the order will be cancelled and forfeited.”</div>
+    <div class="dec" style="color:#F04438">BLOCK · 98%</div>
+    <div class="rbar"><div style="width:98%;background:#F04438"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:95%"></div></div><b>0.95</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="ev">[RULE] Message promises a refund/credit, but a collect request sends money OUT.</div><div class="ev">[RULE] 47 transactions in the last hour.</div><div class="ev">[GRAPH] Device/phone shared with 33 previously flagged accounts.</div><div class="ev">[GRAPH] Part of a connected ring of 49 accounts acting together.</div></div>
+<div class="card" data-code="F08" data-label="fraud">
+    <div class="tech">F08 · FRAUD</div>
+    <div class="amt">₹500</div>
+    <div class="who">Amazon <span class="tech">amazon31@okhdfcbank</span></div>
+    <div class="msg">“Your number has won Rs 500. Complete the payment of Rs 500 to register the claim.”</div>
+    <div class="dec" style="color:#F04438">BLOCK · 93%</div>
+    <div class="rbar"><div style="width:93%;background:#F04438"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:95%"></div></div><b>0.95</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[RULE] Message promises a refund/credit, but a collect request sends money OUT.</div><div class="ev">[RULE] QR says &#x27;amazon&#x27; but the merchant shown was &#x27;amazon pay&#x27;.</div><div class="ev">[SCRIPT] Message closely matches known F08 scripts (84% similar).</div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div></div>
+<div class="card" data-code="F09" data-label="fraud">
+    <div class="tech">F09 · FRAUD</div>
+    <div class="amt">₹63,861</div>
+    <div class="who">Zomato <span class="tech">zomato90@okhdfcbank</span></div>
+    <div class="msg">“Invest Rs 63861 for a risk-free 25% return. Withdrawal allowed after 7 days.”</div>
+    <div class="dec" style="color:#F04438">BLOCK · 95%</div>
+    <div class="rbar"><div style="width:95%;background:#F04438"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:85%"></div></div><b>0.85</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:94%"></div></div><b>0.94</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:55%"></div></div><b>0.55</b></div><div class="ev">[RULE] QR says &#x27;zomato&#x27; but the merchant shown was &#x27;zomato food&#x27;.</div><div class="ev">[RULE] First-ever payment, large amount (Rs 63,861), payee account 150d old.</div><div class="ev">[GRAPH] Device/phone shared with 1 previously flagged account.</div><div class="ev">[GRAPH] Part of a connected ring of 3 accounts acting together.</div></div>
+<div class="card" data-code="F10" data-label="fraud">
+    <div class="tech">F10 · FRAUD</div>
+    <div class="amt">₹2,000</div>
+    <div class="who">IRCTC <span class="tech">irctc68@okhdfcbank</span></div>
+    <div class="msg">“Part-time work from home. Complete 3 tasks daily and earn Rs 2000. Pay Rs 2000 to register.”</div>
+    <div class="dec" style="color:#F79009">STEP_UP · 66%</div>
+    <div class="rbar"><div style="width:66%;background:#F79009"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:100%"></div></div><b>1.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[SCRIPT] Message closely matches known F10 scripts (82% similar).</div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] Payment made from a new device.</div><div class="ev">[BEHAVIOURAL] Round, notable amount.</div></div>
+<div class="card" data-code="L01" data-label="legit">
+    <div class="tech">L01 · GENUINE</div>
+    <div class="amt">₹2,575</div>
+    <div class="who">Cafe Blue <span class="tech">cafeblue47@okhdfcbank</span></div>
+    <div class="msg">“BESCOM bill of Rs 2575 pending. Please pay before the due date.”</div>
+    <div class="dec" style="color:#12B76A">ALLOW · 11%</div>
+    <div class="rbar"><div style="width:11%;background:#12B76A"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] Many payments in a short window.</div><div class="ev">[BEHAVIOURAL] High payment volume today.</div></div>
+<div class="card" data-code="L02" data-label="legit">
+    <div class="tech">L02 · GENUINE</div>
+    <div class="amt">₹1,400</div>
+    <div class="who">Swiggy <span class="tech">swiggy99@okhdfcbank</span></div>
+    <div class="msg">“Pay Rs 1400 to top up your mobile balance.”</div>
+    <div class="dec" style="color:#12B76A">ALLOW · 11%</div>
+    <div class="rbar"><div style="width:11%;background:#12B76A"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] You have never paid this account before.</div><div class="ev">[BEHAVIOURAL] Many payments in a short window.</div></div>
+<div class="card" data-code="L03" data-label="legit">
+    <div class="tech">L03 · GENUINE</div>
+    <div class="amt">₹740</div>
+    <div class="who">Airtel Recharge <span class="tech">airtelrecharge40@okhdfcbank</span></div>
+    <div class="msg">“Dinner at Cafe Blue — my share Rs 740. UPI bhej do.”</div>
+    <div class="dec" style="color:#12B76A">ALLOW · 11%</div>
+    <div class="rbar"><div style="width:11%;background:#12B76A"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] Many payments in a short window.</div><div class="ev">[BEHAVIOURAL] This is a collect request, so money will leave your account.</div></div>
+<div class="card" data-code="L04" data-label="legit">
+    <div class="tech">L04 · GENUINE</div>
+    <div class="amt">₹36,958</div>
+    <div class="who">Reliance Fresh <span class="tech">reliancefresh58@okhdfcbank</span></div>
+    <div class="msg">“Term fees Rs 36958 — pay before the 15th.”</div>
+    <div class="dec" style="color:#12B76A">ALLOW · 11%</div>
+    <div class="rbar"><div style="width:11%;background:#12B76A"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] High payment volume today.</div><div class="ev">[BEHAVIOURAL] Many payments in a short window.</div></div>
+<div class="card" data-code="L05" data-label="legit">
+    <div class="tech">L05 · GENUINE</div>
+    <div class="amt">₹18,632</div>
+    <div class="who">Flipkart <span class="tech">flipkart11@okhdfcbank</span></div>
+    <div class="msg">“Monthly instalment Rs 18632 scheduled.”</div>
+    <div class="dec" style="color:#12B76A">ALLOW · 11%</div>
+    <div class="rbar"><div style="width:11%;background:#12B76A"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] Many payments in a short window.</div><div class="ev">[BEHAVIOURAL] High payment volume today.</div></div>
+<div class="card" data-code="L06" data-label="legit">
+    <div class="tech">L06 · GENUINE</div>
+    <div class="amt">₹31,206</div>
+    <div class="who">BESCOM <span class="tech">bescom23@okhdfcbank</span></div>
+    <div class="msg">“Rent for this month Rs 31206 — please pay before the 5th.”</div>
+    <div class="dec" style="color:#12B76A">ALLOW · 11%</div>
+    <div class="rbar"><div style="width:11%;background:#12B76A"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] High payment volume today.</div><div class="ev">[BEHAVIOURAL] Paid via QR code.</div></div>
+<div class="card" data-code="L07" data-label="legit">
+    <div class="tech">L07 · GENUINE</div>
+    <div class="amt">₹70,000</div>
+    <div class="who">PVR Cinemas <span class="tech">pvrcinemas57@okhdfcbank</span></div>
+    <div class="msg">“Your monthly pay of Rs 70000 has been deposited.”</div>
+    <div class="dec" style="color:#12B76A">ALLOW · 20%</div>
+    <div class="rbar"><div style="width:20%;background:#12B76A"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:25%"></div></div><b>0.25</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:14%"></div></div><b>0.14</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[RULE] Round amount of Rs 70,000.</div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] Round, notable amount.</div><div class="ev">[BEHAVIOURAL] Incoming transaction.</div></div>
+<div class="card" data-code="L08" data-label="legit">
+    <div class="tech">L08 · GENUINE</div>
+    <div class="amt">₹9,604</div>
+    <div class="who">MTR <span class="tech">mtr50@okhdfcbank</span></div>
+    <div class="msg">“Mummy ke liye medicine Rs 9604 bhejo urgently.”</div>
+    <div class="dec" style="color:#12B76A">ALLOW · 11%</div>
+    <div class="rbar"><div style="width:11%;background:#12B76A"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] High payment volume today.</div></div>
+<div class="card" data-code="L09" data-label="legit">
+    <div class="tech">L09 · GENUINE</div>
+    <div class="amt">₹6,000</div>
+    <div class="who">Apollo Pharmacy <span class="tech">apollopharmacy53@okhdfcbank</span></div>
+    <div class="msg">“Insurance premium of Rs 6000 is due for renewal.”</div>
+    <div class="dec" style="color:#12B76A">ALLOW · 17%</div>
+    <div class="rbar"><div style="width:17%;background:#12B76A"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:25%"></div></div><b>0.25</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[RULE] Round amount of Rs 6,000.</div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] Round, notable amount.</div><div class="ev">[BEHAVIOURAL] Many payments in a short window.</div></div>
+<div class="card" data-code="L10" data-label="legit">
+    <div class="tech">L10 · GENUINE</div>
+    <div class="amt">₹60</div>
+    <div class="who">Amazon <span class="tech">amazon65@okhdfcbank</span></div>
+    <div class="msg">“Paid Rs 60 at the grocery store.”</div>
+    <div class="dec" style="color:#12B76A">ALLOW · 11%</div>
+    <div class="rbar"><div style="width:11%;background:#12B76A"></div></div>
+    <div class="lyr"><span>rules</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>script</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>behavioural</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="lyr"><span>graph</span><div class="tr"><div class="fl" style="width:0%"></div></div><b>0.00</b></div><div class="ev">[BEHAVIOURAL] Amount magnitude.</div><div class="ev">[BEHAVIOURAL] High payment volume today.</div></div></div>
+<h3>Model weights (18 features)</h3>
+<table><tr><th>Feature</th><th>Meaning</th><th>Weight</th></tr><tr><td><code>collect_request</code></td><td>Collect request — money leaves your account</td><td>+0.830</td></tr>
+<tr><td><code>incoming_direction</code></td><td>Incoming transaction</td><td>+0.764</td></tr>
+<tr><td><code>purpose_direction_mismatch</code></td><td>Says refund/credit but sends money</td><td>+0.511</td></tr>
+<tr><td><code>amount_log</code></td><td>Amount magnitude</td><td>+0.744</td></tr>
+<tr><td><code>round_amount</code></td><td>Round, notable amount</td><td>+0.934</td></tr>
+<tr><td><code>new_payee</code></td><td>Never paid this account before</td><td>+1.535</td></tr>
+<tr><td><code>new_payee_large</code></td><td>First payment to new payee is large</td><td>+1.065</td></tr>
+<tr><td><code>payee_account_age_log</code></td><td>Payee account is new</td><td>-3.815</td></tr>
+<tr><td><code>credential_request</code></td><td>Asks for OTP / PIN</td><td>+0.153</td></tr>
+<tr><td><code>urgency_keywords</code></td><td>Creates urgency</td><td>-0.057</td></tr>
+<tr><td><code>qr_merchant_mismatch</code></td><td>QR does not match merchant</td><td>+0.818</td></tr>
+<tr><td><code>qr_present</code></td><td>Paid via QR</td><td>+0.292</td></tr>
+<tr><td><code>new_device</code></td><td>New device</td><td>+2.746</td></tr>
+<tr><td><code>emulator</code></td><td>Emulator-like device</td><td>+0.521</td></tr>
+<tr><td><code>txn_per_10min</code></td><td>Many payments, short window</td><td>+2.549</td></tr>
+<tr><td><code>txn_per_hour</code></td><td>High volume today</td><td>+2.497</td></tr>
+<tr><td><code>distinct_payees_recent</code></td><td>Many payees, short window</td><td>+0.000</td></tr>
+<tr><td><code>brand_impersonation</code></td><td>Official-sounding terms</td><td>+0.000</td></tr></table>
+<div class="tech" style="text-align:center;padding:1rem">Kintio Auto · synthetic data only · helpline 1930 · cybercrime.gov.in</div>
+</div><script>
+function f(q){q=q.toLowerCase();document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(q)?'':'none'})}
+</script></body></html>

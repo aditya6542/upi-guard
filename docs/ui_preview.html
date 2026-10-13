@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap');
+
+:root{
+  --void:#070B1C; --panel:#0D1229; --line:#1E2749; --panel-2:#141B38;
+  --ink:#E8ECFF; --muted:#8A93B8;
+  --violet:#7C5CFF; --danger:#FF4D6A; --warn:#FFB020; --ok:#2DD4A7;
+}
+.stApp{background:var(--void);color:var(--ink)}
+.block-container{padding-top:2.2rem;max-width:1180px}
+
+/* ---------- serif display voice, used only for the verdict ---------- */
+.serif{font-family:'Fraunces',Charter,'Iowan Old Style',Georgia,serif}
+
+/* ---------- transaction under test ---------- */
+.scenario{
+  background:var(--panel);border:1px solid var(--line);
+  border-left:3px solid var(--violet);
+  padding:1.15rem 1.3rem;border-radius:3px;margin:.6rem 0;
+}
+.scenario .meta{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.72rem;letter-spacing:.1em;color:var(--muted);margin-bottom:.5rem;
+}
+.scenario .msg{font-size:1.08rem;line-height:1.55;color:var(--ink);margin:.55rem 0}
+.scenario .payee{font-size:.85rem;color:var(--muted)}
+
+/* ---------- THE verdict band: the one loud thing on the page ---------- */
+.verdict{
+  border-radius:3px;padding:1.6rem 1.8rem;margin:1rem 0;
+  position:relative;overflow:hidden;
+  border:1px solid var(--line);
+}
+.verdict::before{content:'';position:absolute;inset:0;opacity:.14}
+.verdict .kicker{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  position:relative;
+}
+.verdict .headline{
+  font-family:'Fraunces',Charter,Georgia,serif;
+  font-size:2.9rem;line-height:1.05;margin:.45rem 0 .1rem;
+  position:relative;letter-spacing:-.02em;
+}
+.verdict .detail{font-size:.95rem;position:relative;opacity:.92}
+
+.v-block::before{background:var(--danger)}   .v-block .headline{color:var(--danger)}
+.v-stepup::before{background:var(--warn)}    .v-stepup .headline{color:var(--warn)}
+.v-allow::before{background:var(--ok)}       .v-allow .headline{color:var(--ok)}
+
+/* risk number, set large in the band's own right column */
+.riskbox{text-align:right;position:relative}
+.riskbox .num{
+  font-family:'Fraunces',Charter,Georgia,serif;font-size:3.4rem;
+  line-height:1;letter-spacing:-.03em;
+}
+.riskbox .cap{font-size:.68rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+
+/* ---------- evidence rows ---------- */
+.sectionlabel{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin:1.4rem 0 .5rem;
+}
+.reason{
+  background:var(--panel-2);border:1px solid var(--line);
+  border-left:2px solid var(--danger);
+  padding:.65rem .9rem;border-radius:2px;margin:.3rem 0;
+  font-size:.9rem;line-height:1.5;color:var(--ink);
+}
+.reason .src{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.66rem;color:var(--muted);letter-spacing:.08em;
+}
+.safe{background:var(--panel-2);border:1px solid var(--line);
+      border-left:2px solid var(--ok);padding:.65rem .9rem;
+      border-radius:2px;margin:.3rem 0;font-size:.9rem;line-height:1.5}
+
+/* ---------- layer meters ---------- */
+.layer{display:flex;align-items:center;gap:.6rem;margin:.4rem 0}
+.layer .nm{font-size:.78rem;letter-spacing:.04em;color:var(--muted);
+           width:6.4rem;text-transform:uppercase;
+           font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.layer .track{flex:1;height:5px;background:var(--panel-2);
+              border-radius:2px;overflow:hidden}
+.layer .fill{height:100%;background:var(--violet);border-radius:2px}
+.layer .vl{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+           font-size:.76rem;color:var(--ink);width:2.4rem;text-align:right}
+
+/* ---------- ring / alert rows ---------- */
+.ring{
+  background:var(--panel);border:1px solid var(--line);border-radius:3px;
+  padding:.85rem 1rem;margin:.4rem 0;display:flex;justify-content:space-between;
+  align-items:center;
+}
+.ring .size{font-family:'Fraunces',Charter,Georgia,serif;font-size:1.6rem;color:var(--ink)}
+.ring .desc{font-size:.82rem;color:var(--muted);line-height:1.45}
+
+/* ---------- sidebar ---------- */
+section[data-testid="stSidebar"]{background:#05081A;border-right:1px solid var(--line)}
+section[data-testid="stSidebar"] h1{
+  font-family:'Fraunces',Charter,Georgia,serif;font-size:1.55rem;
+  font-weight:600;letter-spacing:-.02em;color:var(--ink);
+}
+section[data-testid="stSidebar"] p{color:var(--muted);font-size:.8rem;line-height:1.55}
+
+/* ---------- widgets ---------- */
+.stButton>button{
+  background:var(--violet);color:#fff;border:none;border-radius:3px;
+  padding:.55rem 1.5rem;font-weight:600;font-size:.92rem;
+  box-shadow:0 0 24px rgba(124,92,255,.28);
+}
+.stButton>button:hover{background:#8F73FF;color:#fff;
+                       box-shadow:0 0 30px rgba(124,92,255,.45)}
+.stButton>button:focus{outline:2px solid var(--violet);outline-offset:2px}
+[data-testid="stMetricValue"]{font-family:'Fraunces',Charter,Georgia,serif;
+                               font-size:1.9rem;color:var(--ink)}
+[data-testid="stMetricLabel"]{font-size:.72rem;letter-spacing:.1em;
+                              text-transform:uppercase;color:var(--muted)}
+[data-testid="stMetricDelta"]{font-size:.8rem}
+h1,h2,h3{font-family:'Fraunces',Charter,Georgia,serif;font-weight:600;
+         letter-spacing:-.02em;color:var(--ink)}
+label{color:var(--muted);font-size:.82rem}
+hr{border-color:var(--line)}
+
+@media (prefers-reduced-motion:no-preference){
+  .verdict{animation:rise .28s ease-out}
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body class="stApp">
+<div class="block-container">
+  <h1 style="margin-bottom:.3rem">🛡️ UPIGuard</h1>
+  <p style="color:var(--muted);margin-bottom:2rem">Pre-payment fraud guard for UPI · visual preview</p>
+  
+<section style="margin-bottom:3.5rem">
+  <div class="sectionlabel">Legitimate payment — should pass</div>
+  <div class="scenario">
+    <div class="meta">COLLECT_REQUEST · L03</div>
+    <div class="msg">"Dinner at Cafe Blue — my share Rs 740. UPI bhej do."</div>
+    <div class="payee">Airtel Recharge · airtelrecharge40@okhdfcbank · Rs 740</div>
+  </div>
+  <div class="verdict v-allow">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem">
+      <div>
+        <div class="kicker">passed the gate</div>
+        <div class="headline">Payment cleared</div>
+        <div class="detail">Rs 740 · scored before money moves</div>
+      </div>
+      <div class="riskbox">
+        <div class="num">11<span style="font-size:1.4rem">%</span></div>
+        <div class="cap">risk score</div>
+      </div>
+    </div>
+  </div>
+  <div class="sectionlabel">What the guard saw</div>
+  <div class="reason">Amount magnitude.<br><span class="src">BEHAVIOURAL LAYER</span></div><div class="reason">Many payments in a short window.<br><span class="src">BEHAVIOURAL LAYER</span></div><div class="reason">This is a collect request, so money will leave your account.<br><span class="src">BEHAVIOURAL LAYER</span></div>
+  <div class="sectionlabel">What to do instead</div>
+  <div class="safe">Nothing to do.</div>
+  <div class="sectionlabel">How the four layers scored</div>
+  <div class="layer"><div class="nm">rules</div><div class="track"><div class="fill" style="width:0%"></div></div><div class="vl">0.00</div></div><div class="layer"><div class="nm">script</div><div class="track"><div class="fill" style="width:0%"></div></div><div class="vl">0.00</div></div><div class="layer"><div class="nm">behavioural</div><div class="track"><div class="fill" style="width:0%"></div></div><div class="vl">0.00</div></div><div class="layer"><div class="nm">graph</div><div class="track"><div class="fill" style="width:0%"></div></div><div class="vl">0.00</div></div>
+</section>
+  
+<section style="margin-bottom:3.5rem">
+  <div class="sectionlabel">Refund collect-request — the headline catch</div>
+  <div class="scenario">
+    <div class="meta">COLLECT_REQUEST · F01</div>
+    <div class="msg">"Your payment of Rs 800 was debited by mistake. Accept the collect request to get Rs 800 refunded."</div>
+    <div class="payee">DMart · dmart93@okhdfcbank · Rs 800</div>
+  </div>
+  <div class="verdict v-block">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem">
+      <div>
+        <div class="kicker">blocked at the gate</div>
+        <div class="headline">Payment stopped</div>
+        <div class="detail">Rs 800 · scored before money moves</div>
+      </div>
+      <div class="riskbox">
+        <div class="num">97<span style="font-size:1.4rem">%</span></div>
+        <div class="cap">risk score</div>
+      </div>
+    </div>
+  </div>
+  <div class="sectionlabel">What the guard saw</div>
+  <div class="reason">Message promises a refund/credit, but a collect request sends money OUT.<br><span class="src">RULE LAYER</span></div><div class="reason">22 transactions in the last hour.<br><span class="src">RULE LAYER</span></div><div class="reason">Device/phone shared with 2 previously flagged accounts.<br><span class="src">GRAPH LAYER</span></div><div class="reason">Part of a connected ring of 3 accounts acting together.<br><span class="src">GRAPH LAYER</span></div><div class="reason">Message closely matches known F01 scripts (89% similar).<br><span class="src">SCRIPT LAYER</span></div><div class="reason">Amount magnitude.<br><span class="src">BEHAVIOURAL LAYER</span></div><div class="reason">High payment volume today.<br><span class="src">BEHAVIOURAL LAYER</span></div><div class="reason">You have never paid this account before.<br><span class="src">BEHAVIOURAL LAYER</span></div>
+  <div class="sectionlabel">What to do instead</div>
+  <div class="safe">Do <b>not</b> accept this request — a collect request sends money, it does not receive it.</div><div class="safe">Open the merchant's official app yourself and check the payment status there.</div><div class="safe">If you already paid, call your bank now on the number in the app.</div>
+  <div class="sectionlabel">How the four layers scored</div>
+  <div class="layer"><div class="nm">rules</div><div class="track"><div class="fill" style="width:95%"></div></div><div class="vl">0.95</div></div><div class="layer"><div class="nm">script</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="vl">1.00</div></div><div class="layer"><div class="nm">behavioural</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="vl">1.00</div></div><div class="layer"><div class="nm">graph</div><div class="track"><div class="fill" style="width:65%"></div></div><div class="vl">0.65</div></div>
+</section>
+  
+<section style="margin-bottom:3.5rem">
+  <div class="sectionlabel">Fake job — should be held, not blocked</div>
+  <div class="scenario">
+    <div class="meta">PAY · F10</div>
+    <div class="msg">"Part-time work from home. Complete 3 tasks daily and earn Rs 2000. Pay Rs 2000 to register."</div>
+    <div class="payee">IRCTC · irctc68@okhdfcbank · Rs 2,000</div>
+  </div>
+  <div class="verdict v-stepup">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem">
+      <div>
+        <div class="kicker">held for verification</div>
+        <div class="headline">Extra check needed</div>
+        <div class="detail">Rs 2,000 · scored before money moves</div>
+      </div>
+      <div class="riskbox">
+        <div class="num">66<span style="font-size:1.4rem">%</span></div>
+        <div class="cap">risk score</div>
+      </div>
+    </div>
+  </div>
+  <div class="sectionlabel">What the guard saw</div>
+  <div class="reason">Message closely matches known F10 scripts (82% similar).<br><span class="src">SCRIPT LAYER</span></div><div class="reason">Amount magnitude.<br><span class="src">BEHAVIOURAL LAYER</span></div><div class="reason">Payment made from a new device.<br><span class="src">BEHAVIOURAL LAYER</span></div><div class="reason">Round, notable amount.<br><span class="src">BEHAVIOURAL LAYER</span></div>
+  <div class="sectionlabel">What to do instead</div>
+  <div class="safe">Re-authenticate with an OTP on the official app — never read an OTP to anyone.</div><div class="safe">Verify with the payee on a number you already had, not one in this message.</div><div class="safe">If it still feels wrong, cancel and check your bank app.</div>
+  <div class="sectionlabel">How the four layers scored</div>
+  <div class="layer"><div class="nm">rules</div><div class="track"><div class="fill" style="width:0%"></div></div><div class="vl">0.00</div></div><div class="layer"><div class="nm">script</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="vl">1.00</div></div><div class="layer"><div class="nm">behavioural</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="vl">1.00</div></div><div class="layer"><div class="nm">graph</div><div class="track"><div class="fill" style="width:0%"></div></div><div class="vl">0.00</div></div>
+</section>
+  <section>
+    <div class="sectionlabel">Connected fraud rings</div>
+    <div class="ring"><div class="size">148</div><div class="desc">accounts acting as one operation · <b style="color:var(--danger)">95</b> already flagged<br>Individually clean. Suspicious together.</div></div><div class="ring"><div class="size">15</div><div class="desc">accounts acting as one operation · <b style="color:var(--danger)">15</b> already flagged<br>Individually clean. Suspicious together.</div></div><div class="ring"><div class="size">12</div><div class="desc">accounts acting as one operation · <b style="color:var(--danger)">0</b> already flagged<br>Individually clean. Suspicious together.</div></div>
+  </section>
+</div>
+</body></html>
