@@ -1,4 +1,4 @@
-"""Kintio Auto — Intelligent UPI Fraud Detection (demo).
+"""FraudRakshak — Intelligent UPI Fraud Detection (demo).
 
 Entry: streamlit run app/main.py
 Backend: GuardEngine.score(txn) -> Verdict(risk, action, layers, reasons).
@@ -23,14 +23,18 @@ from engine import build_engine_from_data, load_config  # noqa: E402
 from features import FEATURE_REASON  # noqa: E402
 from taxonomy import SCAM_TYPES  # noqa: E402
 
-st.set_page_config(page_title="Kintio Auto — UPI Fraud Detection", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="FraudRakshak — UPI Fraud Detection", page_icon="🛡️", layout="wide")
 
 # ------------------------------------------------------------- design system
 CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
 .stApp{background:#050505;color:#F5F5F5;font-family:'Inter',system-ui,sans-serif}
-.block-container{padding-top:1rem;max-width:1280px}
+header[data-testid="stHeader"]{display:none!important}
+div[data-testid="stToolbar"]{display:none!important}
+div[data-testid="stDecoration"]{display:none!important}
+div[data-testid="stStatusWidget"]{display:none!important}
+.block-container{padding-top:2.5rem!important;max-width:1280px;margin-top:0!important}
 h1,h2,h3{color:#F5F5F5!important;font-weight:800;letter-spacing:-.02em}
 .tech{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;
   text-transform:uppercase;color:#92978E}
@@ -144,7 +148,7 @@ STEP_T = cfg["gate"]["stepup_threshold"]
 
 # ------------------------------------------------------------- header
 st.markdown(
-    '<div class="hdr"><div><div class="logo">KINTIO <b>AUTO</b>'
+    '<div class="hdr"><div><div class="logo">FRAUD<b>RAKSHAK</b>'
     '<span class="live">● LIVE DEMO</span></div>'
     '<div class="tech">Intelligent UPI Fraud Detection</div></div>'
     '<div style="text-align:right"><div class="tech"><span class="dot"></span>SYSTEM NOMINAL · '
@@ -360,6 +364,6 @@ else:
     st.warning("adaptivity.json missing — run mutate.py.")
 
 st.markdown(
-    '<div class="tech" style="text-align:center;padding:1rem">Kintio Auto · synthetic data only · '
+    '<div class="tech" style="text-align:center;padding:1rem">FraudRakshak · synthetic data only · '
     'cannot run inside a real UPI app · helpline 1930 · cybercrime.gov.in</div>',
     unsafe_allow_html=True)
