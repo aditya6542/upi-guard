@@ -58,13 +58,26 @@ h1,h2,h3{color:#F5F5F5!important;font-weight:800;letter-spacing:-.02em}
 .stButton>button:hover{box-shadow:0 0 24px rgba(198,255,0,.45)!important}
 .stSelectbox>div>div,.stSlider>div{color:#F5F5F5}
 section[data-testid="stSidebar"]{display:none}
-/* phone */
-.phone{width:300px;margin:0 auto;background:#000;border:1px solid #252A24;
-  border-radius:38px;padding:10px;box-shadow:0 0 60px rgba(198,255,0,.07)}
-.screen{background:#0B0D0B;border-radius:28px;overflow:hidden;min-height:560px}
-.phead{padding:.9rem 1rem .7rem;border-bottom:1px solid #252A24}
-.pamt{font-size:1.9rem;font-weight:800}
-.pbody{padding:.9rem 1rem}
+/* ---------- iPhone 14/15 frame: 393x852 logical, aspect ~0.461 ---------- */
+.iphone{width:min(340px,100%);aspect-ratio:393/852;margin:0 auto;background:#1a1a1c;
+  border-radius:54px;padding:11px;box-shadow:0 0 0 2px #3a3a3c,0 0 0 4px #000,
+  0 24px 70px rgba(0,0,0,.6),0 0 60px rgba(198,255,0,.06);box-sizing:border-box;
+  position:relative}
+.iphone::before{content:'';position:absolute;right:-3px;top:170px;width:3px;height:64px;
+  background:#3a3a3c;border-radius:0 2px 2px 0}
+.iphone::after{content:'';position:absolute;left:-3px;top:140px;width:3px;height:100px;
+  background:#3a3a3c;border-radius:2px 0 0 2px}
+.screen{background:#0B0D0B;border-radius:44px;overflow:hidden;height:100%;
+  display:flex;flex-direction:column;position:relative}
+.island{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:100px;
+  height:26px;background:#000;border-radius:99px;z-index:5}
+.statusbar{display:flex;justify-content:space-between;align-items:center;
+  padding:.7rem 1.4rem .1rem;font-size:.68rem;font-weight:600;color:#F5F5F5}
+.phead{padding:.5rem 1rem .6rem;border-bottom:1px solid #252A24;text-align:center}
+.pamt{font-size:1.7rem;font-weight:800}
+.pbody{padding:.7rem .9rem;flex:1;overflow-y:auto}
+.homebar{width:110px;height:4px;background:#3a3a3c;border-radius:99px;margin:.4rem auto .5rem}
+.riskring{display:flex;justify-content:center;padding:.3rem 0}
 .msg{background:#111511;border:1px solid #252A24;border-radius:8px;padding:.6rem .75rem;
   font-size:.78rem;color:#D6D9D2;line-height:1.5}
 .kv{display:flex;justify-content:space-between;font-size:.74rem;padding:.35rem 0;
@@ -106,7 +119,7 @@ td{padding:.42rem .5rem;border-bottom:1px solid #1A1D19;color:#D6D9D2}
 /* ---------- overlap / mobile fixes ---------- */
 .block-container{overflow-x:hidden}
 [data-testid="column"]{min-width:0;overflow:hidden}
-.phone{width:300px;max-width:100%;box-sizing:border-box}
+.iphone{width:min(340px,100%)}
 .screen{min-height:auto;max-height:none;overflow:visible}
 .msg,.kv,.ev,.sheet{overflow-wrap:anywhere;word-break:break-word}
 .msg{max-height:none;overflow:visible}
@@ -115,7 +128,7 @@ td{word-break:break-word}
 .hdr{position:static;z-index:auto}
 @media (max-width:768px){
   .block-container{padding-left:.6rem;padding-right:.6rem}
-  .phone{width:100%;max-width:320px}
+  .iphone{width:100%;max-width:300px}
   .pamt{font-size:1.5rem}
   .kpi-v{font-size:1.5rem}
   .hdr{flex-direction:column;align-items:flex-start}
@@ -256,15 +269,16 @@ with colR:
                  f'<div class="rbar"><div style="width:{risk*100:.0f}%;background:{ring_col}"></div></div>'
                  f'{evs}<div class="hl">Suspect fraud? Call <b>{HELPLINE}</b> · cybercrime.gov.in</div></div>')
     st.markdown(
-        f'<div style="display:flex;justify-content:center">'
-        f'<svg width="120" height="120" viewBox="0 0 120 120">'
-        f'<circle cx="60" cy="60" r="52" fill="none" stroke="#1E221D" stroke-width="5"/>'
-        f'<circle cx="60" cy="60" r="52" fill="none" stroke="{ring_col}" stroke-width="5" '
+        f'<div class="iphone"><div class="screen"><div class="island"></div>'
+        f'<div class="statusbar"><span>9:41</span><span>●●● ▮ 5G ▮▮▮</span></div>'
+        f'<div class="riskring">'
+        f'<svg width="104" height="104" viewBox="0 0 120 120">'
+        f'<circle cx="60" cy="60" r="52" fill="none" stroke="#1E221D" stroke-width="7"/>'
+        f'<circle cx="60" cy="60" r="52" fill="none" stroke="{ring_col}" stroke-width="7" '
         f'stroke-linecap="round" stroke-dasharray="{arc:.0f} 400" transform="rotate(-90 60 60)"/>'
-        f'<circle cx="60" cy="60" r="38" fill="none" stroke="#252A24" stroke-width="1"/>'
-        f'<text x="60" y="66" text-anchor="middle" fill="#F5F5F5" font-size="18" font-weight="800">'
+        f'<text x="60" y="68" text-anchor="middle" fill="#F5F5F5" font-size="22" font-weight="800">'
         f'{risk:.0%}</text></svg></div>'
-        f'<div class="phone"><div class="screen"><div class="phead">'
+        f'<div class="phead">'
         f'<div class="tech">{html.escape(pt["direction"])} · {html.escape(pt["type_code"])}</div>'
         f'<div style="font-weight:700">{html.escape(pt["payee_name"])}</div>'
         f'<div class="tech">{html.escape(pt["payee_vpa"])}</div>'
@@ -273,7 +287,7 @@ with colR:
         f'<div class="kv"><span>Payee</span><b>{html.escape(pt["payee_name"][:22])}</b></div>'
         f'<div class="kv"><span>UPI ID</span><b>{html.escape(pt["payee_vpa"])}</b></div>'
         f'<div class="kv"><span>Amount</span><b>₹{pt["amount"]:,}</b></div>'
-        f'{sheet}</div></div></div>',
+        f'{sheet}</div><div class="homebar"></div></div></div>',
         unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
