@@ -1,7 +1,7 @@
-# UPIGuard — Pre-Payment Fraud Guard for UPI
+# Bounce'D — Pre-Payment Fraud Guard for UPI
 
 **CyberCup 6.0 · Problem CC6-AI02 — Intelligent Detection of Creative Payment Frauds**
-Team UPIGuard · ASET, Amity School of Engineering & Technology
+Team Bounce'D · ASET, Amity School of Engineering & Technology
 
 ---
 

@@ -1,4 +1,4 @@
-"""FraudRakshak — Intelligent UPI Fraud Detection (demo).
+"""Bounce'D — Intelligent UPI Fraud Detection (demo).
 
 Entry: streamlit run app/main.py
 Backend: GuardEngine.score(txn) -> Verdict(risk, action, layers, reasons).
@@ -23,7 +23,7 @@ from engine import build_engine_from_data, load_config  # noqa: E402
 from features import FEATURE_REASON  # noqa: E402
 from taxonomy import SCAM_TYPES  # noqa: E402
 
-st.set_page_config(page_title="FraudRakshak — UPI Fraud Detection", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="Bounce'D — UPI Fraud Detection", page_icon="🛡️", layout="wide")
 
 # ------------------------------------------------------------- design system
 CSS = """
@@ -378,6 +378,6 @@ else:
     st.warning("adaptivity.json missing — run mutate.py.")
 
 st.markdown(
-    '<div class="tech" style="text-align:center;padding:1rem">FraudRakshak · synthetic data only · '
+    '<div class="tech" style="text-align:center;padding:1rem">Bounce'D · synthetic data only · '
     'cannot run inside a real UPI app · helpline 1930 · cybercrime.gov.in</div>',
     unsafe_allow_html=True)

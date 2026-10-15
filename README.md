@@ -1,4 +1,4 @@
-# UPIGuard
+# Bounce'D
 
 **Pre-payment fraud guard for UPI** — scores a payment *before money moves* and warns the payer with reasons they can act on.
 

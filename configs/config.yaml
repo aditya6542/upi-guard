@@ -1,4 +1,4 @@
-# UPIGuard configuration
+# Bounce'D configuration
 # Analyst feedback loop updates the `rules:` section — kept out of code on purpose.
 
 paths:
