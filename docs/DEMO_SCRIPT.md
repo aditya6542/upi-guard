@@ -1,4 +1,4 @@
-# Bounce'D — demo script (4 minutes)
+# BounceD — demo script (4 minutes)
 
 Rehearse this five times with a timer. The demo fails on nerves far more often
 than on software.
@@ -83,7 +83,7 @@ hai. Ye partly irreducible hai — hum chhupate nahi, report karte hain."
 
 ## 4:00 — Close on the ask (20 sec)
 
-*Say:* "Bounce'D payment ke *pehle* rokta hai, wajah batata hai, aur naye scam
+*Say:* "BounceD payment ke *pehle* rokta hai, wajah batata hai, aur naye scam
 pe girta hai — phir khud seekhta hai. 0.13 milliseconds per transaction, real
 payment intent ke andar budget ke andar."
 

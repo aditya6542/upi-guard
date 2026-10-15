@@ -112,7 +112,7 @@ html = f'''<!DOCTYPE html>
 <html><head><meta charset="utf-8">{css}</head>
 <body class="stApp">
 <div class="block-container">
-  <h1 style="margin-bottom:.3rem">🛡️ Bounce'D</h1>
+  <h1 style="margin-bottom:.3rem">🛡️ BounceD</h1>
   <p style="color:var(--muted);margin-bottom:2rem">Pre-payment fraud guard for UPI · visual preview</p>
   {render_case("L03", "Legitimate payment — should pass")}
   {render_case("F01", "Refund collect-request — the headline catch")}

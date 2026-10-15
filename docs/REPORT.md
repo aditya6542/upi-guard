@@ -1,7 +1,7 @@
-# Bounce'D — Pre-Payment Fraud Guard for UPI
+# BounceD — Pre-Payment Fraud Guard for UPI
 
 **CyberCup 6.0 · Problem CC6-AI02 — Intelligent Detection of Creative Payment Frauds**
-Team Bounce'D · ASET, Amity School of Engineering & Technology
+Team BounceD · ASET, Amity School of Engineering & Technology
 
 ---
 
